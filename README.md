@@ -6,7 +6,7 @@ very simple tiktok macro to follow/like users/videos, use with random interval s
 you can set min-max interval between follow action( in seconds ), to make it more random, you should keep interval between 5-10 (longer interval is better but runs slower).
 
 Youtube Demo : 
-https://www.youtube.com/watch?v=1Jspmin6Qu4
+https://www.youtube.com/watch?v=RxQyVH4O3OU
 
 if you like it, please subscribe to my youtube channel :
 https://www.youtube.com/c/freeangelz?sub_confirmation=1
