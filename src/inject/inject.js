@@ -111,10 +111,10 @@ function _like(ps, b){
 	var div = ps.querySelectorAll('div.engagement-icon-v23');
 	for(var i=0; i<div.length; i++){
 	
-		var svg = div[i].querySelector("svg");
+		var svg = div[i].querySelectorAll('svg');
 		if(svg){
-			if(svg.innerHTML.indexOf("g filter") === -1){
-				console.log("clicked !");
+			if(svg[0].getAttribute('fill') === 'currentColor'){
+				console.log("Liked !");
 				click(div[i]);
 
 				if(b) { 
@@ -127,7 +127,6 @@ function _like(ps, b){
 				}
 				return true;
 			}
-
 			return false;
 		}
 	
