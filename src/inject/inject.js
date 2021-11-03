@@ -7,22 +7,8 @@
 
 tick_count = 0;
 cur_url = "test";
-following_page = 'https://www.tiktok.com/following?lang=en';
 
-function getUrlVars() { 
-  var vars = {}; 
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { vars[key] = value; }); 
-  return vars; 
-}
-
-function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-for (var i = 0; i < cookies.length; i++) { var cookie = cookies[i]; var eqPos = cookie.indexOf("="); var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-document.cookie = name+'="";-1; path=/';
-}
-}
- 
-const _MAX_FOLLOW_TO_RELOAD = 100;
+const _MAX_FOLLOW_TO_RELOAD = 40;
 
 last_click = 0;
 last_call = 0;
@@ -81,9 +67,12 @@ function _follow(ps){
 
 	if(!config.autofollow) { return false; }
 
-	var btns = ps.querySelectorAll("button.follow-button");
-	if(!btns) { return false; }
-	if(btns.length < 1) { return false; }
+	var btns = ps.getElementsByTagName("button");
+				
+	if((!btns) || (btns.length < 1)) { 
+		console.log("No Follow Button !");
+		return false; 
+	}
 
 	for(var i=0; i<btns.length; i++){
 		if(btns[i].textContent == "Follow") {
@@ -108,12 +97,18 @@ function _follow(ps){
 function _like(ps, b){
 	if(!config.autolike){ return false; }
 
-	var div = ps.querySelectorAll('div.engagement-icon-v23');
+	//<span data-e2e="like-icon"
+	var div = ps.querySelectorAll('span[data-e2e="like-icon"]');
+	if((!div) || (div.length < 1)) { 
+		console.log("No like Button !");
+		return false; 
+	}	
+	
 	for(var i=0; i<div.length; i++){
 	
-		var svg = div[i].querySelectorAll('svg');
+		var svg = div[i].querySelector('svg');
 		if(svg){
-			if(svg[0].getAttribute('fill') === 'currentColor'){
+			if(svg.getAttribute('fill') === 'currentColor'){
 				console.log("Liked !");
 				click(div[i]);
 
@@ -137,9 +132,11 @@ function _like(ps, b){
 
 function doFollowAndLike(){
 
-	var posts = document.querySelectorAll("span.lazyload-wrapper");
-	if(!posts) { return false; }
-	if(posts.length < 1) { return false; }
+	var posts = document.querySelectorAll("div.tiktok-1kylh1d-DivItemContainer");
+	if((!posts) || (posts.length < 1))  { 
+		console.log("No post not found !");
+		return false; 
+	}
 
 	var b = false;
 	var b1 = false;

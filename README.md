@@ -1,8 +1,10 @@
 # tiktokfollower
 tiktok follower
 
-updated to versi 002
+updated to versi 0.0.3 (November 3rd, 2021)
 - fix tiktok like element changed
+
+*** you should remove the old extension, then re-install with the new one.
 
 very simple tiktok macro to follow/like users/videos, use with random interval so it looks like normal user's activity tiktok follower macro is the best tool for easy and quick tiktok follow. it will follow people on tiktok while you're away.
 
