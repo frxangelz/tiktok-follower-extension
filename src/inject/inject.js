@@ -98,7 +98,13 @@ function _like(ps, b){
 	if(!config.autolike){ return false; }
 
 	//<span data-e2e="like-icon"
-	var div = ps.querySelectorAll('span[data-e2e="like-icon"]');
+	//var div = ps.querySelectorAll('span[data-e2e="like-icon"]');
+	
+	var div = ps.querySelectorAll('div.engagement-icon-v23');
+	if((!div) || (div.length < 1)){
+		div = ps.querySelectorAll('span[data-e2e="like-icon"');
+	}
+	
 	if((!div) || (div.length < 1)) { 
 		console.log("No like Button !");
 		return false; 
